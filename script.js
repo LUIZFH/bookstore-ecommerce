@@ -52,9 +52,6 @@ searchInput.addEventListener('keydown', function (event) {
 
 function searchBooks(keyword) {
     const url = `https://api.itbook.store/1.0/search/${keyword}`;
-
-    window.location.href = "/bookstore-ecommerce";
-
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -81,15 +78,11 @@ function redirectToDetails(isbn) {
     window.location.href = detailsUrl;
 }
 
-
 function atualizarContadorCarrinho() {
     let cartCounter = document.getElementById("cart-counter");
 
     if (localStorage.getItem("cartItems")) {
         let itens = JSON.parse(localStorage.getItem("cartItems"));
-
-
-
         cartCounter.textContent = itens.length;
     } else {
         cartCounter.textContent = "0";
