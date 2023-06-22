@@ -7,11 +7,16 @@
 </head>
 <body>
     <header>
+        <div class="icon">
+            <img src="img/icon.png" alt="Ícone">
+        </div>
         <div class="search">
-            <input type="text" placeholder="Pesquisar...">
+            <label for="search-input">BookStore LFHO</label>
+            <input id="search-input" type="text" placeholder="Pesquisar...">
         </div>
         <div class="dropdown">
-            <select>
+            <label for="filter-select">Filtro de Pesquisa</label>
+            <select id="filter-select">
                 <option value="livro">Categoria</option>
                 <option value="titulo">Título</option>
                 <option value="editora">Editora</option>
@@ -19,14 +24,23 @@
             </select>
         </div>
         <div class="login">
-            <span class="material-symbols-outlined">
-                login
-            </span>
-            <span class="material-symbols-outlined">
-                shopping_cart
-            </span>
+            <div class="tooltip">
+                <span class="material-symbols-outlined">
+                    login
+                </span>
+                <span class="tooltiptext">Faça login</span>
+            </div>
+            <div class="tooltip">
+                <span class="material-symbols-outlined">
+                    shopping_cart
+                </span>
+                <span class="tooltiptext">Carrinho de compras</span>
+            </div>
         </div>
     </header>
-    <!-- Conteúdo da página aqui -->
+    <div class="cards-container">
+    </div>
+
+    <script src="./script.js"></script>
 </body>
 </html>

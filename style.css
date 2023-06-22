@@ -2,7 +2,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 20px;
     background-color: #f0f0f0;
 }
 
@@ -10,6 +10,11 @@ header {
     flex: 1;
     text-align: center;
 }
+
+.icon img {
+    height: 100px;
+}
+
 
 .dropdown {
     flex: 1;
@@ -25,14 +30,12 @@ header {
     height: 30px;
 }
 
-/* Estilos adicionais para melhorar a aparência */
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
 }
 
-/* Opcional: Estilo para o campo de pesquisa */
 .search input {
     width: 200px;
     padding: 5px;
@@ -40,12 +43,68 @@ body {
     border-radius: 4px;
 }
 
-/* Opcional: Estilo para o seletor de opções */
 .dropdown select {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #fff;
+}
+
+.login {
+    margin-right: 50px;
+}
+
+.login span {
+    margin-right: 30px;
+}
+
+.login span:hover,
+.shopping-cart span:hover {
+    color: red; /* Ajuste a cor conforme desejado */
+    cursor: pointer;
+}
+
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center; 
+}
+
+.card {
+    width: 300px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .material-symbols-outlined {
