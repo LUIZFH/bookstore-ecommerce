@@ -60,7 +60,7 @@ body {
 
 .login span:hover,
 .shopping-cart span:hover {
-    color: red; /* Ajuste a cor conforme desejado */
+    color: red;
     cursor: pointer;
 }
 
@@ -96,7 +96,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 }
 
 .card {
@@ -107,10 +107,76 @@ body {
     border-radius: 4px;
 }
 
+.cart-counter {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+}
+
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    background-color: #f1f1f1;
+    transition: right 0.3s ease;
+    z-index: 2;
+}
+
+.cart-sidebar.open {
+    right: 0;
+}
+
+#total-price {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #ff0000;
+}
+
+.close-icon {
+    display: inline-block;
+    position: relative;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.close-icon:before,
+.close-icon:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 2px;
+    background-color: #000000;
+}
+
+.close-icon:before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.close-icon:after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
 }

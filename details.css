@@ -1,33 +1,82 @@
 .book-details {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: calc(100vh - 60px);
+    justify-content: center;
+    gap: 20px;
     padding: 20px;
-    box-sizing: border-box;
-    margin: 60px auto;
-    max-width: 600px;
-    margin-top: 180px;
 }
-.book-details {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 80px;
-  }
-  
-  .book-details > * {
-    margin: 10px;
-  }
-  
-  #book-image {
-    flex-shrink: 0;
-    width: 200px;
-  }
-  
-  #book-title {
+
+.image-container {
+    flex: 0 0 200px;
+    position: relative;
+}
+
+#book-image {
+    width: 400px;
+    height: auto;
+}
+
+.cart-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #fff;
+    padding: 8px;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.text-container {
+    flex: 1;
+}
+
+.add-to-cart {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+}
+
+#cart-icon {
     font-size: 24px;
+    color: #000000;
+}
+
+.add-to-cart-label {
+    font-size: 14px;
     font-weight: bold;
-  }
-  
+    color: #333;
+    margin-right: 10px;
+}
+
+.add-to-cart-label:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+h2 {
+    font-size: 24px;
+    margin: 0;
+}
+
+h3 {
+    font-size: 18px;
+    margin: 0;
+}
+
+p {
+    margin: 8px 0;
+}
+
+a {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 8px 16px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}

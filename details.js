@@ -1,3 +1,25 @@
+let cartIcon = document.getElementById("cart-icon");
+
+cartIcon.addEventListener("click", addToCart);
+
+function addToCart() {
+    let bookTitle = document.getElementById("book-title").textContent;
+    let bookPrice = document.getElementById("book-price").textContent;
+
+    let cartItems = localStorage.getItem("cartItems");
+    if (cartItems) {
+        cartItems = JSON.parse(cartItems);
+        cartItems.push({ title: bookTitle, price: bookPrice });
+    } else {
+        cartItems = [{ title: bookTitle, price: bookPrice }];
+    }
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    atualizarContadorCarrinho();
+
+    alert("Livro adicionado ao carrinho!");
+}
+
+
 const urlParams = new URLSearchParams(window.location.search);
 const isbn = urlParams.get('isbn');
 

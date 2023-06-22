@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>LFHO</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
     <header>
         <div class="icon">
@@ -30,12 +33,21 @@
                 </span>
                 <span class="tooltiptext">Faça login</span>
             </div>
-            <div class="tooltip">
+            <div class="tooltip abrir-carrinho">
                 <span class="material-symbols-outlined">
                     shopping_cart
                 </span>
                 <span class="tooltiptext">Carrinho de compras</span>
+                <span id="cart-counter" class="cart-counter">0</span>
             </div>
+            <div id="cart-sidebar-id" class="cart-sidebar">
+                <div class="close-icon">
+                    <span class="material-icons"></span>
+                </div>
+                <div id="cart-items"></div>
+                <div id="total-price"></div>
+            </div>
+
         </div>
     </header>
     <div class="cards-container">
@@ -43,4 +55,5 @@
 
     <script src="./script.js"></script>
 </body>
+
 </html>
