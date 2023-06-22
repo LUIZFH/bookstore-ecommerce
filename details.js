@@ -1,17 +1,20 @@
 let cartIcon = document.getElementById("cart-icon");
 
-cartIcon.addEventListener("click", addToCart);
+cartIcon.addEventListener("click", openModal);
 
-function addToCart() {
+function addToCart(quantity) {
     let bookTitle = document.getElementById("book-title").textContent;
     let bookPrice = document.getElementById("book-price").textContent;
 
     let cartItems = localStorage.getItem("cartItems");
-    if (cartItems) {
-        cartItems = JSON.parse(cartItems);
-        cartItems.push({ title: bookTitle, price: bookPrice });
-    } else {
-        cartItems = [{ title: bookTitle, price: bookPrice }];
+    cartItems = JSON.parse(cartItems);
+
+    for(let i = 0; i < quantity; i++) {
+        if (cartItems) {
+            cartItems.push({ title: bookTitle, price: bookPrice });
+        } else {
+            cartItems = [{ title: bookTitle, price: bookPrice }];
+        }
     }
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     atualizarContadorCarrinho();
@@ -92,6 +95,26 @@ function updateSideBar() {
 }
 
 updateSideBar();
+
+function openModal() {
+    const modal = document.getElementById('modal');
+    modal.style.display = 'block';
+    const confirmButton = document.getElementById('confirm-button');
+    const livro = document.getElementById("modal-detalhes-do-livro");
+    let bookTitle_ = document.getElementById("book-title").textContent;
+    livro.textContent = `Livro: ${bookTitle_}`;
+    confirmButton.addEventListener('click', addToCartFromModal);
+}
+
+function addToCartFromModal() {
+    const modal = document.getElementById('modal');
+    const quantityInput = document.getElementById('quantity-input');
+    const quantity = parseInt(quantityInput.value);
+    addToCart(quantity);
+    modal.style.display = 'none';
+    quantityInput.value = '1';
+    bookGLobal = null
+}
 
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -250,7 +273,6 @@ function generateRandomBookSummary() {
 
     return bookSummary;
 }
-
 
 fetchBookDetails(isbn);
 
