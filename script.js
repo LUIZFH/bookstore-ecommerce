@@ -53,7 +53,7 @@ searchInput.addEventListener('keydown', function (event) {
 function searchBooks(keyword) {
     const url = `https://api.itbook.store/1.0/search/${keyword}`;
 
-    window.location.href = "/";
+    window.location.href = "/bookstore-ecommerce";
 
     fetch(url)
         .then(response => response.json())
