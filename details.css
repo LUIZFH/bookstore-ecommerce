@@ -1,0 +1,33 @@
+.book-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px);
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 60px auto;
+    max-width: 600px;
+    margin-top: 180px;
+}
+.book-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+  }
+  
+  .book-details > * {
+    margin: 10px;
+  }
+  
+  #book-image {
+    flex-shrink: 0;
+    width: 200px;
+  }
+  
+  #book-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  

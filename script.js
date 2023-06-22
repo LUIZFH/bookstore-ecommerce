@@ -7,6 +7,9 @@ fetch('https://api.itbook.store/1.0/search/archi')
 
         books.forEach(book => {
             const card = createCard(book);
+            card.addEventListener('click', function() {
+                redirectToDetails(book.isbn13);
+            });
             cardsContainer.appendChild(card);
         });
     })
@@ -51,6 +54,8 @@ searchInput.addEventListener('keydown', function(event) {
 function searchBooks(keyword) {
     const url = `https://api.itbook.store/1.0/search/${keyword}`;
 
+    window.location.href = "/";
+
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -65,7 +70,15 @@ function renderBooks(books) {
 
     books.forEach(book => {
         const card = createCard(book);
+        card.addEventListener('click', function() {
+            redirectToDetails(book.isbn13);
+        });
         cardsContainer.appendChild(card);
     });
+}
+
+function redirectToDetails(isbn) {
+    const detailsUrl = `details.html?isbn=${isbn}`;
+    window.location.href = detailsUrl;
 }
 

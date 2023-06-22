@@ -3,10 +3,49 @@
 <head>
     <title>Detalhes do Livro</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./details.css">
+    <head>
+        <title>LFHO</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="./style.css">
+    </head>
 </head>
 <body>
+    <header>
+        <div class="icon">
+            <img src="img/icon.png" alt="Ícone">
+        </div>
+        <div class="search">
+            <label for="search-input">BookStore LFHO</label>
+            <input id="search-input" type="text" placeholder="Pesquisar...">
+        </div>
+        <div class="dropdown">
+            <label for="filter-select">Filtro de Pesquisa</label>
+            <select id="filter-select">
+                <option value="livro">Categoria</option>
+                <option value="titulo">Título</option>
+                <option value="editora">Editora</option>
+                <option value="autor">Autor</option>
+            </select>
+        </div>
+        <div class="login">
+            <div class="tooltip">
+                <span class="material-symbols-outlined">
+                    login
+                </span>
+                <span class="tooltiptext">Faça login</span>
+            </div>
+            <div class="tooltip">
+                <span class="material-symbols-outlined">
+                    shopping_cart
+                </span>
+                <span class="tooltiptext">Carrinho de compras</span>
+            </div>
+        </div>
+    </header>
     <div class="book-details">
         <h2 id="book-title"></h2>
+        <img id="book-image" src="" alt="Capa do livro">
         <h3 id="book-subtitle"></h3>
         <p id="book-authors"></p>
         <p id="book-publisher"></p>
@@ -16,10 +55,10 @@
         <p id="book-rating"></p>
         <p id="book-description"></p>
         <p id="book-price"></p>
-        <img id="book-image" src="" alt="Capa do livro">
         <a id="book-url" href="" target="_blank">Ver mais</a>
     </div>
 
     <script src="./details.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>
