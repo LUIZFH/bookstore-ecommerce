@@ -9,7 +9,7 @@ function addToCart(quantity) {
     let cartItems = localStorage.getItem("cartItems");
     cartItems = JSON.parse(cartItems);
 
-    for(let i = 0; i < quantity; i++) {
+    for (let i = 0; i < quantity; i++) {
         if (cartItems) {
             cartItems.push({ title: bookTitle, price: bookPrice });
         } else {
@@ -198,23 +198,21 @@ function randomizeBookBinding() {
 
 function randomizeAuthorInfo() {
     const authorInfoPhrases = [
-      "O autor possui vasta experiência na área de TI.",
-      "O autor é reconhecido por suas contribuições para a indústria de tecnologia.",
-      "As obras anteriores do autor receberam aclamação crítica.",
-      "O autor é especialista em desenvolvimento de software.",
-      "As ideias do autor têm influenciado profissionais de TI em todo o mundo.",
-      "O autor é palestrante frequente em conferências de tecnologia.",
-      "O trabalho do autor é amplamente utilizado e referenciado na área de TI.",
-      "O autor é conhecido por sua abordagem inovadora em soluções de TI.",
-      "O autor é autoridade no assunto abordado neste livro.",
-      "O autor possui uma sólida formação acadêmica na área de TI."
+        "O autor possui vasta experiência na área de TI.",
+        "O autor é reconhecido por suas contribuições para a indústria de tecnologia.",
+        "As obras anteriores do autor receberam aclamação crítica.",
+        "O autor é especialista em desenvolvimento de software.",
+        "As ideias do autor têm influenciado profissionais de TI em todo o mundo.",
+        "O autor é palestrante frequente em conferências de tecnologia.",
+        "O trabalho do autor é amplamente utilizado e referenciado na área de TI.",
+        "O autor é conhecido por sua abordagem inovadora em soluções de TI.",
+        "O autor é autoridade no assunto abordado neste livro.",
+        "O autor possui uma sólida formação acadêmica na área de TI."
     ];
-  
+
     const randomIndex = Math.floor(Math.random() * authorInfoPhrases.length);
     return authorInfoPhrases[randomIndex];
-  }
-  
-
+}
 
 function generateRandomBookSummary() {
     const topics = [
