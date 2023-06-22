@@ -1,0 +1,57 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+.search {
+    flex: 1;
+    text-align: center;
+}
+
+.dropdown {
+    flex: 1;
+    text-align: left;
+}
+
+.login {
+    margin-left: auto;
+}
+
+.logo img,
+.login img {
+    height: 30px;
+}
+
+/* Estilos adicionais para melhorar a aparência */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Opcional: Estilo para o campo de pesquisa */
+.search input {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Opcional: Estilo para o seletor de opções */
+.dropdown select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
