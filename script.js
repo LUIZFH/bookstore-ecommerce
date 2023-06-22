@@ -94,6 +94,7 @@ function atualizarContadorCarrinho() {
     } else {
         cartCounter.textContent = "0";
     }
+    updateSideBar();
 }
 atualizarContadorCarrinho();
 
@@ -112,62 +113,66 @@ closeIcon.addEventListener("click", function () {
     cartSidebar.classList.remove("open");
 });
 
-let cartItemsContainer = document.querySelector("#cart-items");
-let totalPriceContainer = document.querySelector("#total-price");
+function updateSideBar() {
+    let cartItemsContainer = document.querySelector("#cart-items");
+    let totalPriceContainer = document.querySelector("#total-price");
 
-let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
-let groupedItems = {};
-let regex = /Price:\s+\$/;
+    let groupedItems = {};
+    let regex = /Price:\s+\$/;
 
-cartItems.forEach(function (item) {
-    item.price = Number(item.price.replace(regex, ""));
+    cartItems.forEach(function (item) {
+        item.price = Number(item.price.replace(regex, ""));
 
-    if (groupedItems[item.title]) {
-        groupedItems[item.title].quantity += 1;
-    } else {
-        groupedItems[item.title] = {
-            title: item.title,
-            quantity: 1,
-            price: item.price
-        };
+        if (groupedItems[item.title]) {
+            groupedItems[item.title].quantity += 1;
+        } else {
+            groupedItems[item.title] = {
+                title: item.title,
+                quantity: 1,
+                price: item.price
+            };
+        }
+    });
+
+    cartItemsFormatted = Object.values(groupedItems);
+
+    function calculateTotalPrice(item) {
+        return item.quantity * item.price;
     }
-});
 
-cartItemsFormatted = Object.values(groupedItems);
+    cartItemsContainer.innerHTML = "";
 
-function calculateTotalPrice(item) {
-    return item.quantity * item.price;
+    cartItemsFormatted.forEach(function (item) {
+
+
+        console.log({ x: item.price })
+        let itemContainer = document.createElement("div");
+        itemContainer.classList.add("cart-item");
+
+        let title = document.createElement("h4");
+        title.textContent = item.title;
+
+        let price = document.createElement("span");
+
+        price.textContent = "Preço: $" + Number(item.price).toFixed(2);
+
+        let quantity = document.createElement("span");
+        quantity.textContent = "Quantidade: " + item.quantity;
+
+        itemContainer.appendChild(title);
+        itemContainer.appendChild(price);
+        itemContainer.appendChild(quantity);
+
+        cartItemsContainer.appendChild(itemContainer);
+    });
+
+
+    let totalPrice = cartItemsFormatted.reduce(function (total, item) {
+        return total + calculateTotalPrice(item);
+    }, 0);
+    totalPriceContainer.textContent = "Preço Total do Carrinho: $" + totalPrice.toFixed(2);
 }
 
-cartItemsContainer.innerHTML = "";
-
-cartItemsFormatted.forEach(function (item) {
-
-
-    console.log({ x: item.price })
-    let itemContainer = document.createElement("div");
-    itemContainer.classList.add("cart-item");
-
-    let title = document.createElement("h4");
-    title.textContent = item.title;
-
-    let price = document.createElement("span");
-
-    price.textContent = "Preço: $" + Number(item.price).toFixed(2);
-
-    let quantity = document.createElement("span");
-    quantity.textContent = "Quantidade: " + item.quantity;
-
-    itemContainer.appendChild(title);
-    itemContainer.appendChild(price);
-    itemContainer.appendChild(quantity);
-
-    cartItemsContainer.appendChild(itemContainer);
-});
-
-
-let totalPrice = cartItemsFormatted.reduce(function (total, item) {
-    return total + calculateTotalPrice(item);
-}, 0);
-totalPriceContainer.textContent = "Preço Total do Carrinho: $" + totalPrice.toFixed(2);
+updateSideBar();
