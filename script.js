@@ -6,9 +6,6 @@ fetch('https://api.itbook.store/1.0/search/archi')
 
         books.forEach(book => {
             const card = createCard(book);
-            card.addEventListener('click', function () {
-                redirectToDetails(book.isbn13);
-            });
             cardsContainer.appendChild(card);
         });
     })
@@ -35,7 +32,137 @@ function createCard(book) {
     year.textContent = `Price: ${book.price}`;
     card.appendChild(year);
 
+    const autorMock = document.createElement('p');
+    autorMock.textContent = `Autor: ${generateRandomAutor()}`;
+    card.appendChild(autorMock);
+
+    const editoraMock = document.createElement('p');
+    editoraMock.textContent = `Editora: ${generateRandomPublisher()}`;
+    card.appendChild(editoraMock);
+
+
+    const categoryMock = document.createElement('p');
+    categoryMock.textContent = `Categoria: ${generateRandomCategory()}`;
+    card.appendChild(categoryMock);
+
+    const statusMock = document.createElement('p');
+    statusMock.textContent = `Status: Disponível`;
+    card.appendChild(statusMock);
+
+    const addToCartButton = document.createElement('button');
+    addToCartButton.innerHTML = '<span id="cart-icon-card" class="material-symbols-outlined">shopping_cart</span>';
+    addToCartButton.addEventListener('click', function (event) {
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        openModal(book);
+    });
+    card.appendChild(addToCartButton);
+
+    const viewDetailsButton = document.createElement('button');
+    viewDetailsButton.innerHTML = '<span class="material-symbols-outlined">visibility</span>';
+    viewDetailsButton.addEventListener('click', function () {
+        redirectToDetails(book.isbn13);
+    });
+    card.appendChild(viewDetailsButton);
+
     return card;
+}
+
+let bookGLobal = null;
+
+function openModal(book) {
+    bookGLobal = book;
+    const modal = document.getElementById('modal');
+    modal.style.display = 'block';
+    const confirmButton = document.getElementById('confirm-button');
+    const livro = document.getElementById("modal-detalhes-do-livro");
+    livro.textContent = `Livro: ${book.title}`
+    confirmButton.addEventListener('click', addToCartFromModal);
+}
+
+function addToCartFromModal() {
+    const modal = document.getElementById('modal');
+    const quantityInput = document.getElementById('quantity-input');
+    const quantity = parseInt(quantityInput.value);
+    addToCart(bookGLobal, quantity);
+    modal.style.display = 'none';
+    quantityInput.value = '1';
+    bookGLobal = null
+}
+
+
+function generateRandomCategory() {
+    const computerScienceCategories = [
+        'Programação',
+        'Algoritmos',
+        'Redes de Computadores',
+        'Segurança da Informação',
+        'Banco de Dados',
+        'Inteligência Artificial',
+        'Desenvolvimento Web',
+        'Sistemas Operacionais',
+        'Engenharia de Software',
+        'Ciência de Dados',
+        'Arquitetura de Computadores',
+        'Computação Gráfica'
+    ];
+
+    return computerScienceCategories[Math.floor(Math.random() * computerScienceCategories.length)];
+}
+
+
+function generateRandomAutor() {
+    const computerScienceNames = [
+        'Ada Lovelace',
+        'Alan Turing',
+        'Grace Hopper',
+        'Linus Torvalds',
+        'Tim Berners-Lee',
+        'Donald Knuth',
+        'Bill Gates',
+        'Steve Jobs',
+        'Mark Zuckerberg',
+        'Larry Page',
+        'Sergey Brin',
+        'Martin Fowler'
+    ];
+    return computerScienceNames[Math.floor(Math.random() * computerScienceNames.length)];
+}
+
+function generateRandomPublisher() {
+    const computerSciencePublishers = [
+        'O\'Reilly Media',
+        'Manning Publications',
+        'Addison-Wesley Professional',
+        'Pearson Education',
+        'Packt Publishing',
+        'Apress',
+        'No Starch Press',
+        'MIT Press',
+        'Pragmatic Bookshelf',
+        'Oxford University Press',
+        'Wiley',
+        'McGraw-Hill Education'
+    ];
+
+    return computerSciencePublishers[Math.floor(Math.random() * computerSciencePublishers.length)];
+}
+
+function addToCart(book, quantity) {
+    let cartItems = localStorage.getItem("cartItems");
+    cartItems = JSON.parse(cartItems);
+    let regex = /\$/;
+    book.price = Number(book.price.toString().replace(regex, ""));
+    for (let i = 0; i < quantity; i++) {
+        if (cartItems) {
+            cartItems.push({ title: book.title, price: book.price });
+        } else {
+            cartItems = [{ title: book.title, price: book.price }];
+        }
+    }
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    atualizarContadorCarrinho();
+    alert(`${quantity} livros adicionados ao carrinho!`);
 }
 
 const searchInput = document.getElementById('search-input');
@@ -66,9 +193,6 @@ function renderBooks(books) {
 
     books.forEach(book => {
         const card = createCard(book);
-        card.addEventListener('click', function () {
-            redirectToDetails(book.isbn13);
-        });
         cardsContainer.appendChild(card);
     });
 }
@@ -116,7 +240,7 @@ function updateSideBar() {
     let regex = /Price:\s+\$/;
 
     cartItems.forEach(function (item) {
-        item.price = Number(item.price.replace(regex, ""));
+        item.price = Number(item.price.toString().replace(regex, ""));
 
         if (groupedItems[item.title]) {
             groupedItems[item.title].quantity += 1;
@@ -139,8 +263,6 @@ function updateSideBar() {
 
     cartItemsFormatted.forEach(function (item) {
 
-
-        console.log({ x: item.price })
         let itemContainer = document.createElement("div");
         itemContainer.classList.add("cart-item");
 
