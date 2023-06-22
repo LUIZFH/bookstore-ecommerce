@@ -19,7 +19,7 @@ function addToCart(quantity) {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     atualizarContadorCarrinho();
 
-    alert("Livro adicionado ao carrinho!");
+    alert(`${quantity} livros adicionados ao carrinho!`);
 }
 
 function atualizarContadorCarrinho() {
