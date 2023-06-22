@@ -51,6 +51,7 @@ function createCard(book) {
 
     const addToCartButton = document.createElement('button');
     addToCartButton.innerHTML = '<span id="cart-icon-card" class="material-symbols-outlined">shopping_cart</span>';
+    addToCartButton.setAttribute('data-text', 'Adicionar ao Carrinho');
     addToCartButton.addEventListener('click', function (event) {
         event.stopPropagation();
         event.stopImmediatePropagation();
@@ -60,6 +61,7 @@ function createCard(book) {
 
     const viewDetailsButton = document.createElement('button');
     viewDetailsButton.innerHTML = '<span class="material-symbols-outlined">visibility</span>';
+    viewDetailsButton.setAttribute('data-text', 'Detalhes');
     viewDetailsButton.addEventListener('click', function () {
         redirectToDetails(book.isbn13);
     });
