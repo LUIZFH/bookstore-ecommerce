@@ -168,15 +168,24 @@ function addToCart(book, quantity) {
 }
 
 const searchInput = document.getElementById('search-input');
+const searchButton = document.getElementById('search-button');
+
+function performSearch() {
+    const keyword = searchInput.value.trim();
+    if (keyword) {
+        searchBooks(keyword);
+    }
+}
 
 searchInput.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         event.preventDefault();
-        const keyword = searchInput.value.trim();
-        if (keyword) {
-            searchBooks(keyword);
-        }
+        performSearch();
     }
+});
+
+searchButton.addEventListener('click', function () {
+    performSearch();
 });
 
 function searchBooks(keyword) {
@@ -216,8 +225,6 @@ function atualizarContadorCarrinho() {
     updateSideBar();
 }
 atualizarContadorCarrinho();
-
-
 
 let tooltip = document.querySelector(".abrir-carrinho");
 let cartSidebar = document.querySelector("#cart-sidebar-id");
