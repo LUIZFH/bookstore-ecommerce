@@ -70,7 +70,7 @@ function updateSideBar() {
         let itemContainer = document.createElement("div");
         itemContainer.classList.add("cart-item");
 
-        let title = document.createElement("h4");
+        let title = document.createElement("p");
         title.textContent = item.title;
 
         let price = document.createElement("span");
