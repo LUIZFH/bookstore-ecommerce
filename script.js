@@ -1,7 +1,7 @@
 const cardsContainer = document.querySelector('.cards-container');
 
 function fetchBooks() {
-    fetch('https://api.itbook.store/1.0/search/archi')
+    fetch('https://api.itbook.store/1.0/search/software')
         .then(response => response.json())
         .then(data => renderBooks(data.books))
         .catch(console.error);
