@@ -97,23 +97,22 @@ function updateSideBar() {
 updateSideBar();
 
 function openModal() {
-    const modal = document.getElementById('modal');
-    modal.style.display = 'block';
+    modalAddBook.style.display = 'block';
     const confirmButton = document.getElementById('confirm-button');
-    const livro = document.getElementById("modal-detalhes-do-livro");
-    let bookTitle_ = document.getElementById("book-title").textContent;
-    livro.textContent = `Livro: ${bookTitle_}`;
+    const book = document.getElementById("modal-detalhes-do-livro");
+    let bookTitle = document.getElementById("book-title").textContent;
+    book.textContent = `Livro: ${bookTitle}`;
     confirmButton.addEventListener('click', addToCartFromModal);
 }
 
 function addToCartFromModal() {
-    const modal = document.getElementById('modal');
     const quantityInput = document.getElementById('quantity-input');
     const quantity = parseInt(quantityInput.value);
     addToCart(quantity);
-    modal.style.display = 'none';
+    modalAddBook.style.display = 'none';
     quantityInput.value = '1';
-    bookGLobal = null
+    bookGlobal = null
+    window.location.href = `/bookstore-ecommerce`;
 }
 
 
@@ -276,6 +275,9 @@ fetchBookDetails(isbn);
 
 let tooltip = document.querySelector(".abrir-carrinho");
 let cartSidebar = document.querySelector("#cart-sidebar-id");
+const modalAddBook = document.getElementById("modal");
+const closeButton = document.getElementById("close-button");
+closeButton.addEventListener("click", () => modalAddBook.style.display = "none");
 
 tooltip.addEventListener("click", function () {
     cartSidebar.classList.toggle("open");
